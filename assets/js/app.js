@@ -31,9 +31,8 @@ function newTweet(e){
   const tweet = document.getElementById('tweet').value;
   //create a remove button
   appendTweet(tweet)
-  document.getElementById("tweet").value = " ";
-  tweets.push(tweet);
   addTweetToLocalStorage();
+  this.reset();
 }
 
 //Remove Tweet
