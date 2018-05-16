@@ -40,7 +40,7 @@ function newTweet(e){
 function removeTweet(e){
  if (e.target.classList.contains('remove-tweet')){
        let elt = e.target.parentElement.textContent;
-       elt = elt.replace("X","");
+       elt = elt.substring(0,elt.length -1);
        deleteToLocalStorage(elt);
       e.target.parentElement.remove();
 
@@ -72,13 +72,10 @@ function addTweetToLocalStorage(){
 
 //Delete Item to localStorage
 function deleteToLocalStorage(elt){
- let index = 0;
- for (var i = 0; i < tweets.length; i++) {
-      if (tweets[i] == elt) {
-        index = i;
-        break;
-      }
- }
- tweets.pop(index);
+  tweets.forEach(function(tweet,index){
+    if (elt === tweet){
+        tweets.splice(index,1)
+    }
+  })
  addTweetToLocalStorage();
 }
