@@ -7,11 +7,13 @@ const tweets    = []
 EventListener();
 loadToLocalStorage();
 
+// add Listener to element
 function EventListener(){
   document.querySelector("#form").addEventListener('submit',newTweet);
   tweetList.addEventListener("click",removeTweet);
 }
 
+// Load Element to localStorage
 function loadToLocalStorage(){
   let all_tweets = [];
   all_tweets = JSON.parse(localStorage.getItem("tweets"));
@@ -23,8 +25,7 @@ function loadToLocalStorage(){
   }
 }
 
-//Function
-
+//Add newTweet
 function newTweet(e){
   e.preventDefault();
   const tweet = document.getElementById('tweet').value;
@@ -32,10 +33,10 @@ function newTweet(e){
   appendTweet(tweet)
   document.getElementById("tweet").value = " ";
   tweets.push(tweet);
-
   addTweetToLocalStorage();
 }
 
+//Remove Tweet
 function removeTweet(e){
  if (e.target.classList.contains('remove-tweet')){
        let elt = e.target.parentElement.textContent;
@@ -48,6 +49,7 @@ function removeTweet(e){
  }
 }
 
+//Append new Tweet
 function appendTweet(tweet){
   const removeBtn = document.createElement("a");
   removeBtn.classList = 'remove-tweet';
@@ -63,10 +65,12 @@ function appendTweet(tweet){
 }
 
 
+// Add or Update localStorage
 function addTweetToLocalStorage(){
   localStorage.setItem("tweets",JSON.stringify(tweets))
 }
 
+//Delete Item to localStorage
 function deleteToLocalStorage(elt){
  let index = 0;
  for (var i = 0; i < tweets.length; i++) {
